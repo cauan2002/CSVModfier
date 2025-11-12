@@ -20,20 +20,30 @@ O sistema permite enviar arquivos, processar seus cabeçalhos ou partes específ
 
 csvmodifier/
 │
+
 ├── app.py # Criação e configuração principal do Flask
 ├── main.py # Ponto de entrada da aplicação (rotas e inicialização)
 │
+
 ├── services/
+
 │ └── Uploadservice.py # Lógica de upload dos arquivos CSV
 │
+
 ├── DownloadServices/
 │ └── DownloadHead.py # Funções para download, filtragem e cabeçalho dos CSVs
 │
+
+
 ├── uploads/ # Pasta onde os arquivos enviados são armazenados
 │
+
+
 ├── templates/
 │ └── index.html # Interface HTML para upload e manipulação
 │
+
+
 └── README.md # Documentação do projeto
 
 
