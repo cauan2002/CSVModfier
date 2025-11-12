@@ -1,0 +1,11 @@
+hour_of_day,cash_type,money,coffee_name,Time_of_Day,Weekday,Month_name,Weekdaysort,Monthsort,Date,Time
+15,card,21.06,Espresso,Afternoon,Sat,Mar,6,3,2025-03-22,15:57:58.183000
+16,card,35.76,Latte,Afternoon,Sat,Mar,6,3,2025-03-22,16:26:59.766000
+17,card,30.86,Americano with Milk,Night,Sat,Mar,6,3,2025-03-22,17:53:35.942000
+19,card,30.86,Americano with Milk,Night,Sat,Mar,6,3,2025-03-22,19:16:52.727000
+10,card,35.76,Latte,Morning,Sun,Mar,7,3,2025-03-23,10:07:11.278000
+10,card,35.76,Cappuccino,Morning,Sun,Mar,7,3,2025-03-23,10:34:54.894000
+14,card,35.76,Cocoa,Afternoon,Sun,Mar,7,3,2025-03-23,14:43:37.362000
+14,card,35.76,Cocoa,Afternoon,Sun,Mar,7,3,2025-03-23,14:44:16.864000
+15,card,25.96,Americano,Afternoon,Sun,Mar,7,3,2025-03-23,15:47:28.723000
+18,card,35.76,Latte,Night,Sun,Mar,7,3,2025-03-23,18:11:38.635000

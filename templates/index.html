@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload de CSV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 60px auto;
+            text-align: center;
+            max-width: 800px;
+        }
+        input[type=file], button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #mensagem {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        #preview {
+            margin-top: 30px;
+        }
+        table.preview-table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            width: 90%;
+        }
+        .preview-table th, .preview-table td {
+            border: 1px solid #ccc;
+            padding: 6px;
+        }
+        .download-btn {
+            display: none;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            text-decoration: none;
+            margin: 5px;
+        }
+        .download-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Upload e Visualização de CSV</h2>
+
+    <form id="upload-form">
+        <input type="file" id="file-input" name="file" accept=".csv" required>
+        <button type="submit">Enviar</button>
+   </form>
+
+
+    <h2>Filtrar arquivo carregado</h2>
+    <form action="/filtrar_csv" method="POST">
+        <input type="text" name="coluna" placeholder="Nome da coluna" required><br>
+        <input type="text" name="valor" placeholder="Valor para filtrar" required><br>
+        <button type="submit">Filtrar e baixar CSV</button>
+
+    </form>
+
+    <div id="mensagem"></div>
+    <div id="preview"></div>
+
+    <br>
+
+    <!-- Botão para baixar as primeiras 10 linhas -->
+    <a id="download-head-btn" class="download-btn" href="/download_head">⬇️ Download (10 primeiras linhas)</a>
+
+    <!-- Novo botão para baixar as últimas 10 linhas -->
+    <a id="download-tail-btn" class="download-btn" href="/download_tail">⬇️ Download (10 últimas linhas)</a>
+
+    <script>
+        const form = document.getElementById("upload-form");
+        const mensagem = document.getElementById("mensagem");
+        const preview = document.getElementById("preview");
+        const downloadHeadBtn = document.getElementById("download-head-btn");
+        const downloadTailBtn = document.getElementById("download-tail-btn");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const response = await fetch("/upload", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.status === "ok") {
+                mensagem.innerHTML = `<p style="color:green;">${data.message}</p>`;
+                preview.innerHTML = data.preview_html;
+
+                // Mostra os botões de download após upload bem-sucedido
+                downloadHeadBtn.style.display = "inline-block";
+                downloadTailBtn.style.display = "inline-block";
+            } else {
+                mensagem.innerHTML = `<p style="color:red;">${data.message}</p>`;
+                preview.innerHTML = "";
+
+                // Esconde os botões se houver erro
+                downloadHeadBtn.style.display = "none";
+                downloadTailBtn.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>
